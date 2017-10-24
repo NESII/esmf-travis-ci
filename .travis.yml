@@ -1,11 +1,18 @@
+# TODO: Enable data tests
+# TODO: Enable examples testing
+# TODO: Run ESMF tests (make check / make all_tests)
+# TODO: Run tests without optional dependencies; currently just does an import
+# TODO: Test using Python 2.6
+# TODO: Enable slow tests?
+
 language: python
 
 sudo: false
 
 env:
   matrix:
-    - CONDA_PYTHON="2"
-    - CONDA_PYTHON="3"
+    - CONDA_PYTHON="2.7"
+    - CONDA_PYTHON="3.6"
 
 before_install:
   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
@@ -13,16 +20,18 @@ before_install:
   - export PATH=$HOME/miniconda/bin:$PATH
   - hash -r
   - conda config --set always_yes yes --set changeps1 no
-  - conda update --all --yes
-  - conda config --prepend channels "conda-forge"
+  - conda config --add channels conda-forge
+  - conda update -q --all
   - conda install conda-build
   - conda info -a
-  - cd conda-recipes
-  - conda build esmf && conda build --python $CONDA_PYTHON esmpy
-
-install:
-  - conda create -n test --use-local esmpy nose mpi4py netcdf4
-  - source activate test
 
 script:
-  - python -c "import ESMF"
+  - cd conda-recipes
+  - conda build --python $CONDA_PYTHON esmpy
+  - conda create -n test --use-local python=$CONDA_PYTHON esmpy=latest nose mpi4py netcdf4
+  - source activate test
+  - python -c "from ESMF import *; import ESMF; print(ESMF.__file__); ESMF.Manager(debug=True)"
+
+  # Test import works without optional test dependencies.
+  - conda remove netcdf4 mpi4py
+  - python -c "from ESMF import *; import ESMF; print(ESMF.__file__); ESMF.Manager(debug=True)"

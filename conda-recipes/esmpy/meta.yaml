@@ -8,12 +8,12 @@ build:
 source:
   git_url: git://git.code.sf.net/p/esmf/esmf
   git_tag: master
+#  git_tag: bekozi-esmpy-weight-file
 
 requirements:
   build:
     - python
     - numpy
-    - esmf ==7.1.0.dev35
     - esmf ==latest
   run:
     - python
@@ -23,6 +23,8 @@ requirements:
 test:
   requires:
     - nose
+    - mpi4py
+    - netcdf4
   imports:
     - ESMF
 
