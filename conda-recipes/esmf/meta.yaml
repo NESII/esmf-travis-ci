@@ -11,7 +11,7 @@ build:
 source:
   git_url: git://git.code.sf.net/p/esmf/esmf
   git_tag: master
-#  git_tag: bekozi-esmpy-weight-file
+#  git_tag: bekozi-esmpy-test-rework
 
 requirements:
   build:

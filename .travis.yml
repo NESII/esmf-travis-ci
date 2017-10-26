@@ -1,5 +1,3 @@
-# TODO: Enable data tests
-# TODO: Enable examples testing
 # TODO: Run ESMF tests (make check / make all_tests)
 # TODO: Run tests without optional dependencies; currently just does an import
 # TODO: Test using Python 2.6

@@ -10,7 +10,8 @@ export ESMFMKFILE=${PREFIX}/lib/esmf.mk
 ESMPY_SRC=${SRC_DIR}/src/addon/ESMPy
 cd ${ESMPY_SRC}
 
-${PYTHON} setup.py build --ESMFMKFILE=${ESMFMKFILE}
+${PYTHON} setup.py build --ESMFMKFILE=${ESMFMKFILE} || exit 1
+${PYTHON} setup.py test_all || exit 1
 ${PYTHON} setup.py install
 
 #${PYTHON} setup.py test || exit 1

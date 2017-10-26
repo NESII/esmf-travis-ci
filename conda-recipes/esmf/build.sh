@@ -24,7 +24,7 @@ export ESMF_COMM=mpich3
 
 make  -j ${CPU_COUNT}
 
-#make all_tests | tee ~/esmf_make_all_tests.out
-#make check | tee ~/esmf_make_check.out
+#make all_tests
+#make check
 
 make install
