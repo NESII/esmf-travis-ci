@@ -1,7 +1,6 @@
 package:
   name: esmf
-  # version: latest
-  version: 7.1.0.dev46
+  version: latest
 
 build:
   number: 1
@@ -11,8 +10,7 @@ build:
 
 source:
   git_url: git://git.code.sf.net/p/esmf/esmf
-  # git_tag: master
-  git_tag: ESMF_7_1_0_beta_snapshot_46
+  git_tag: master
 #  git_tag: bekozi-esmpy-test-rework
 
 requirements:
