@@ -1,20 +1,22 @@
 package:
   name: esmpy
-  version: latest
+  # version: latest
+  version: 7.1.0.dev46
 
 build:
   number: 1
 
 source:
   git_url: git://git.code.sf.net/p/esmf/esmf
-  git_tag: master
+  # git_tag: master
+  git_tag: ESMF_7_1_0_beta_snapshot_46
 #  git_tag: bekozi-esmpy-test-rework
 
 requirements:
   build:
     - python
     - numpy
-    - esmf ==latest
+    - esmf ==7.1.0.dev46
 
     # ===== Required for testing. =====
     - nose
@@ -24,7 +26,7 @@ requirements:
   run:
     - python
     - numpy
-    - esmf ==latest
+    - esmf ==7.1.0.dev46
 
 test:
   imports:
