@@ -10,6 +10,7 @@ sudo: false
 env:
   matrix:
     - CONDA_PYTHON="2.7"
+    - CONDA_PYTHON="3.5"
     - CONDA_PYTHON="3.6"
 
 before_install:
