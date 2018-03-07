@@ -37,3 +37,4 @@ script:
   # Test import works without optional test dependencies.
   # - conda remove netcdf4 mpi4py
   # - python -c "from ESMF import *; import ESMF; print(ESMF.__file__); ESMF.Manager(debug=True)"
+
