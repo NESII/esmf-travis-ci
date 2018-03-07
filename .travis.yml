@@ -31,13 +31,8 @@ before_install:
 script:
   - cd conda-recipes
 
-  # Only build ESMF once.
-  - |
-    if [[ ${CONDA_PYTHON} == "2.7" ]]; then
-      conda build esmf
-    fi
-
-  # Build ESMPy
+  # Build ESMF/ESMPy
+  - conda build esmf
   - conda build --python ${CONDA_PYTHON} esmpy
 
     # Upload packages.
