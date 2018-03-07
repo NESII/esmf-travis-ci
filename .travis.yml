@@ -25,7 +25,7 @@ before_install:
   - conda config --set always_yes yes --set changeps1 no
   - conda config --add channels conda-forge
   - conda update -q --all
-  - conda install -q conda-build
+  - conda install -q conda-build anaconda-client
   - conda info -a
 
 script:
