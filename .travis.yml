@@ -1,6 +1,5 @@
 # TODO: Run ESMF tests (make check / make all_tests)
 # TODO: Run tests without optional dependencies; currently just does an import
-# TODO: Test using Python 2.6
 # TODO: Enable slow tests?
 
 language: python
@@ -8,6 +7,11 @@ language: python
 sudo: false
 
 env:
+  global:
+    - CONDA_ESMF_TAG="ESMF_7_1_0r"
+    - CONDA_ESMF_VER="7.1.0r"
+    - CONDA_ESMF_BNO=1
+    - CONDA_ESMF_UPL="false"
   matrix:
     - CONDA_PYTHON="2.7"
     - CONDA_PYTHON="3.5"
@@ -15,18 +19,36 @@ env:
 
 before_install:
   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH=$HOME/miniconda/bin:$PATH
+  - bash miniconda.sh -b -p ${HOME}/miniconda
+  - export PATH=${HOME}/miniconda/bin:${PATH}
   - hash -r
   - conda config --set always_yes yes --set changeps1 no
   - conda config --add channels conda-forge
   - conda update -q --all
-  - conda install conda-build
+  - conda install -q conda-build
   - conda info -a
 
 script:
   - cd conda-recipes
-  - conda build --python $CONDA_PYTHON esmpy
+
+  # Only build ESMF once.
+  - |
+    if [[ ${CONDA_PYTHON} == "2.7" ]]; then
+      conda build esmf
+    fi
+
+  # Build ESMPy
+  - conda build --python ${CONDA_PYTHON} esmpy
+
+    # Upload packages.
+  - |
+    # Only upload ESMF once.
+    if [[ ${CONDA_ESMF_UPL} == "true" ]]; then
+      if [[ ${CONDA_PYTHON} == "2.7" ]]; then
+        anaconda -t ${CONDA_UPLOAD_TOKEN} upload --no-progress -u nesii -l dev-esmf `conda build --output esmf`
+      fi
+      anaconda -t ${CONDA_UPLOAD_TOKEN} upload --no-progress -u nesii -l dev-esmf `conda build --output --python ${CONDA_PYTHON} esmpy`
+    fi
 
   # RLO: remove install test because of mysterious travis failures
   # - conda create -n test --use-local python=$CONDA_PYTHON esmpy=latest nose mpi4py netcdf4

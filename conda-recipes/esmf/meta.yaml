@@ -1,17 +1,16 @@
 package:
   name: esmf
-  version: latest
+  version: {{ environ['CONDA_ESMF_VER'] }}
 
 build:
-  number: 1
+  number: {{ environ['CONDA_ESMF_BNO'] }}
   rpaths:
     - lib/
     - lib64/
 
 source:
   git_url: git://git.code.sf.net/p/esmf/esmf
-  git_tag: master
-#  git_tag: bekozi-esmpy-test-rework
+  git_tag: {{ environ['CONDA_ESMF_TAG'] }}
 
 requirements:
   build:
