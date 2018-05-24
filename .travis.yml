@@ -10,7 +10,7 @@ env:
   global:
     - CONDA_ESMF_TAG="ESMF_7_1_0r"
     - CONDA_ESMF_VER="7.1.0r"
-    - CONDA_ESMF_BNO=1
+    - CONDA_ESMF_BNO=2
     - CONDA_ESMF_UPL="true"
   matrix:
     - CONDA_PYTHON="2.7"
