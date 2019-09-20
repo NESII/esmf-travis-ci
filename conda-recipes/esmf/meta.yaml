@@ -16,7 +16,7 @@ requirements:
   build:
     - netcdf-fortran
     - mpich
-    - gcc
+    - libgcc
 #    - openmpi # [osx]
 #    - mpich2 # [linux]
   run:
