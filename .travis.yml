@@ -8,10 +8,10 @@ sudo: false
 
 env:
   global:
-    - CONDA_ESMF_TAG="merge-esmpy-inmemweights"
-    - CONDA_ESMF_VER="dev"
-    - CONDA_ESMF_BNO=1
-    - CONDA_ESMF_UPL="true"
+    - CONDA_ESMF_TAG="master"
+    - CONDA_ESMF_VER="master"
+    - CONDA_ESMF_BNO=0
+    - CONDA_ESMF_UPL="false"
   matrix:
     - CONDA_PYTHON="2.7"
     - CONDA_PYTHON="3.5"
