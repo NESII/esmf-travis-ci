@@ -15,10 +15,10 @@ requirements:
     - numpy
     - esmf =={{ environ['CONDA_ESMF_VER'] }}
 
-    # ===== Required for testing. =====
+    # ===== Required for testing =====
     - nose
     - netcdf4
-    # =================================
+    # ================================
   run:
     - python
     - numpy

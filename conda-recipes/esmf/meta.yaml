@@ -15,7 +15,6 @@ source:
 requirements:
   build:
     - netcdf-fortran
-    - libnetcdf
     - mpich
     - libgcc
     - libgfortran
@@ -24,15 +23,18 @@ requirements:
     - gcc_linux-64
 #    - openmpi # [osx]
 #    - mpich2 # [linux]
+
+    # ===== Required for testing ESMPy =====
+    - nose
+    - netcdf4
+    # ======================================
   run:
     - netcdf-fortran
     - mpich
     - libgcc
     - libgfortran
-    - libnetcdf
 #    - openmpi # [osx]
 #    - mpich2 # [linux]
-#    - krb5
 
 test:
   commands:
