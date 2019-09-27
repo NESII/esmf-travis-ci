@@ -15,6 +15,7 @@ source:
 requirements:
   build:
     - netcdf-fortran
+    - libnetcdf
     - mpich
     - libgcc
     - libgfortran
@@ -28,6 +29,7 @@ requirements:
     - mpich
     - libgcc
     - libgfortran
+    - libnetcdf
 #    - openmpi # [osx]
 #    - mpich2 # [linux]
 #    - krb5
