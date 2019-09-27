@@ -32,8 +32,8 @@ script:
   - cd conda-recipes
 
   # Build ESMF/ESMPy
-  - conda build esmf
-  - conda build --python ${CONDA_PYTHON} esmpy
+  - conda build --python ${CONDA_PYTHON} esmf
+#  - conda build --python ${CONDA_PYTHON} esmpy
 
     # Upload packages.
   - |

@@ -28,3 +28,18 @@ make  -j ${CPU_COUNT}
 #make check
 
 make install
+
+# ESMPy ========================================================================
+
+export ESMFMKFILE=${PREFIX}/lib/esmf.mk
+ESMPY_SRC=${SRC_DIR}/src/addon/ESMPy
+cd ${ESMPY_SRC}
+
+${PYTHON} setup.py build --ESMFMKFILE=${ESMFMKFILE} || exit 1
+${PYTHON} setup.py test || exit 1
+#${PYTHON} setup.py test_all || exit 1
+${PYTHON} setup.py install || exit 1
+
+#${PYTHON} setup.py test_examples || exit 1
+#${PYTHON} setup.py test_parallel || exit 1
+#${PYTHON} setup.py test_examples_parallel || exit 1

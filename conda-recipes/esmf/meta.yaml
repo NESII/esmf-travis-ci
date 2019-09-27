@@ -24,6 +24,9 @@ requirements:
 #    - openmpi # [osx]
 #    - mpich2 # [linux]
 
+    - python
+    - numpy
+
     # ===== Required for testing ESMPy =====
     - nose
     - netcdf4
@@ -36,10 +39,15 @@ requirements:
 #    - openmpi # [osx]
 #    - mpich2 # [linux]
 
+    - python
+    - numpy
+
 test:
   commands:
     - ESMF_Info
     - ESMF_RegridWeightGen --help
+  imports:
+    - ESMF
 
 about:
   home: http://www.earthsystemmodeling.org/
