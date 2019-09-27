@@ -17,12 +17,17 @@ requirements:
     - netcdf-fortran
     - mpich
     - libgcc
+    - libgfortran
+    - gfortran_linux-64
+    - gxx_linux-64
+    - gcc_linux-64
 #    - openmpi # [osx]
 #    - mpich2 # [linux]
   run:
     - netcdf-fortran
     - mpich
     - libgcc
+    - libgfortran
 #    - openmpi # [osx]
 #    - mpich2 # [linux]
 #    - krb5
