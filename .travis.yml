@@ -7,16 +7,16 @@ language: python
 services:
   - docker
 
-env:
-  global:
-    - CONDA_ESMF_TAG="master"
-    - CONDA_ESMF_VER="master"
-    - CONDA_ESMF_BNO=0
-    - CONDA_ESMF_UPL="false"
-  matrix:
-    - CONDA_PYTHON="2.7"
-    - CONDA_PYTHON="3.5"
-    - CONDA_PYTHON="3.6"
+#env:
+#  global:
+#    - CONDA_ESMF_TAG="master"
+#    - CONDA_ESMF_VER="master"
+#    - CONDA_ESMF_BNO=0
+#    - CONDA_ESMF_UPL="false"
+#  matrix:
+#    - CONDA_PYTHON="2.7"
+#    - CONDA_PYTHON="3.5"
+#    - CONDA_PYTHON="3.6"
 
 before_install:
   - cd docker/esmf && docker build -t esmf .
