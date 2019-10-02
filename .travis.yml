@@ -1,7 +1,3 @@
-# TODO: Run ESMF tests (make check / make all_tests)
-# TODO: Run tests without optional dependencies; currently just does an import
-# TODO: Enable slow tests?
-
 language: python
 
 services:
@@ -9,42 +5,9 @@ services:
 
 #env:
 #  global:
-#    - CONDA_ESMF_TAG="master"
-#    - CONDA_ESMF_VER="master"
-#    - CONDA_ESMF_BNO=0
-#    - CONDA_ESMF_UPL="false"
 #  matrix:
-#    - CONDA_PYTHON="2.7"
-#    - CONDA_PYTHON="3.5"
-#    - CONDA_PYTHON="3.6"
-
-before_install:
-  - cd docker/esmf && docker build -t esmf .
+#
+#before_install:
 
 script:
-  - cd conda-recipes
-
-  # Build ESMF/ESMPy
-  - conda build --python ${CONDA_PYTHON} esmf
-#  - conda build --python ${CONDA_PYTHON} esmpy
-
-    # Upload packages.
-  - |
-    # Only upload ESMF once.
-    if [[ ${CONDA_ESMF_UPL} == "true" ]]; then
-      if [[ ${CONDA_PYTHON} == "2.7" ]]; then
-        anaconda -t ${CONDA_UPLOAD_TOKEN} upload --no-progress -u nesii -l dev-esmf `conda build --output esmf`
-      fi
-      anaconda -t ${CONDA_UPLOAD_TOKEN} upload --no-progress -u nesii -l dev-esmf `conda build --output --python ${CONDA_PYTHON} esmpy`
-    fi
-
-  # RLO: remove install test because of mysterious travis failures
-  # - conda create -n test --use-local python=$CONDA_PYTHON esmpy=latest nose mpi4py netcdf4
-  # - source activate test
-  # - python -c "from ESMF import *; import ESMF; print(ESMF.__file__); ESMF.Manager(debug=True)"
-
-  # RLO: remove install test because of mysterious travis failures
-  # Test import works without optional test dependencies.
-  # - conda remove netcdf4 mpi4py
-  # - python -c "from ESMF import *; import ESMF; print(ESMF.__file__); ESMF.Manager(debug=True)"
-
+  - cd docker/esmf && docker build -t esmf .

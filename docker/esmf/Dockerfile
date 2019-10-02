@@ -22,8 +22,8 @@ ENV ESMF_INSTALL_MODDIR=${ESMF_INSTALL_PREFIX}/mod
 
 RUN make info 2>&1 | tee esmf-make-info.out
 RUN make 2>&1 | tee esmf-make.out
-#RUN make check 2>&1 | tee esmf-make-check.out
-#RUN make build_unit_tests | tee esmf-make-build_unit_tests.out
+RUN make check 2>&1 | tee esmf-make-check.out
+#RUN make all_tests 2>&1 | tee esmf-make-all_tests.out
 RUN make install 2>&1 | tee esmf-make.out
 
 # Build ESMPy ================================================================================================
@@ -32,20 +32,11 @@ RUN apt-get --yes install python3 python3-pip
 RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN ln -s /usr/bin/pip3 /usr/bin/pip
 
-#RUN apt-get --yes install python python-pip
-#
 RUN pip install numpy nose
-#
-##RUN find ${ESMF_DIR}/lib -name '*esmf.mk'
+
 ENV ESMFMKFILE=${ESMF_INSTALL_LIBDIR}/esmf.mk
 WORKDIR ${ESMF_DIR}/src/addon/ESMPy
 RUN python setup.py build --ESMFMKFILE=${ESMFMKFILE}
 RUN python setup.py test 2>&1 | tee esmpy-test.out
 RUN python setup.py install
 RUN python -c "import ESMF"
-#
-#WORKDIR /opt/esmf
-
-#RUN gcc --version
-#RUN gfortran --version
-#RUN python --version
