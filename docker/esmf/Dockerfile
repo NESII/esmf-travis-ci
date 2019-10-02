@@ -1,6 +1,6 @@
 FROM bekozi/esmf-netcdf
 
-# Build ESMF =================================================================================================
+# Build ESMF ===================================================================
 
 WORKDIR ${HOME}/sandbox/esmf/git
 RUN git clone --depth 1 https://git.code.sf.net/p/esmf/esmf esmf
@@ -26,13 +26,7 @@ RUN make check 2>&1 | tee esmf-make-check.out
 #RUN make all_tests 2>&1 | tee esmf-make-all_tests.out
 RUN make install 2>&1 | tee esmf-make.out
 
-# Build ESMPy ================================================================================================
-
-RUN apt-get --yes install python3 python3-pip
-RUN ln -s /usr/bin/python3 /usr/bin/python
-RUN ln -s /usr/bin/pip3 /usr/bin/pip
-
-RUN pip install numpy nose
+# Build ESMPy ==================================================================
 
 ENV ESMFMKFILE=${ESMF_INSTALL_LIBDIR}/esmf.mk
 WORKDIR ${ESMF_DIR}/src/addon/ESMPy

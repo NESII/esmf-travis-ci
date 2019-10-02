@@ -1,4 +1,4 @@
-FROM esmf-ubuntu
+FROM bekozi/esmf-ubuntu
 
 ENV BB_SANDBOX=${HOME}/sandbox
 ENV BB_MPICC=mpicc

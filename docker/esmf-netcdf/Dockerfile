@@ -1,4 +1,4 @@
-FROM esmf-hdf5
+FROM bekozi/esmf-hdf5
 
 ENV BB_SANDBOX=${HOME}/sandbox
 ENV BB_MPICC=mpicc
