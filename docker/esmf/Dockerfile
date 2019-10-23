@@ -3,9 +3,9 @@ FROM bekozi/esmf-netcdf
 # Build ESMF ===================================================================
 
 WORKDIR ${HOME}/sandbox/esmf/git
-RUN git clone --depth 1 https://git.code.sf.net/p/esmf/esmf esmf
+RUN git clone https://git.code.sf.net/p/esmf/esmf esmf
 WORKDIR esmf
-RUN git checkout ESMF_8_0_0
+RUN git checkout master
 
 ENV ESMF_DIR=${HOME}/sandbox/esmf/git/esmf
 ENV ESMF_COMM=mpich3
