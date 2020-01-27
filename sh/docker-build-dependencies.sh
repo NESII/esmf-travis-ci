@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eO pipefail
+set -Eeuxo pipefail
 
 cd ../docker
 
@@ -11,5 +11,3 @@ docker build -t bekozi/esmf-hdf5 .
 
 cd ../esmf-netcdf
 docker build -t bekozi/esmf-netcdf .
-
-docker push bekozi/esmf-netcdf

@@ -22,7 +22,7 @@ ENV ESMF_INSTALL_MODDIR=${ESMF_INSTALL_PREFIX}/mod
 
 RUN make info 2>&1 | tee esmf-make-info.out
 RUN make 2>&1 | tee esmf-make.out
-RUN make check 2>&1 | tee esmf-make-check.out
+#RUN make check 2>&1 | tee esmf-make-check.out
 #RUN make all_tests 2>&1 | tee esmf-make-all_tests.out
 RUN make install 2>&1 | tee esmf-make.out
 
