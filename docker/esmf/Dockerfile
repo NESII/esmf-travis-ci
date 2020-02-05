@@ -3,7 +3,7 @@ FROM bekozi/esmf-netcdf
 # Build ESMF ===================================================================
 
 WORKDIR ${HOME}/sandbox/esmf/src-git
-RUN git clone https://github.com/esmf-org/esmf.git
+RUN git clone --depth 1 https://github.com/esmf-org/esmf.git
 WORKDIR esmf
 RUN git checkout master
 
