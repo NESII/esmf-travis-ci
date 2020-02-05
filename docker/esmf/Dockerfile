@@ -1,6 +1,7 @@
 FROM bekozi/esmf-netcdf
 
-ARG ESMF_BRANCH
+ARG ESMF_BRANCH=""
+RUN echo "ESMF_BRANCH=$ESMF_BRANCH"
 
 # Build ESMF ==================================================================
 
