@@ -1,11 +1,12 @@
 FROM bekozi/esmf-netcdf
 
-# Build ESMF ===================================================================
+ARG ESMF_BRANCH
+
+# Build ESMF ==================================================================
 
 WORKDIR ${HOME}/sandbox/esmf/src-git
-RUN git clone --depth 1 https://github.com/esmf-org/esmf.git
+RUN git clone --branch $ESMF_BRANCH --depth 1 https://github.com/esmf-org/esmf.git
 WORKDIR esmf
-RUN git checkout master
 
 ENV ESMF_DIR=${HOME}/sandbox/esmf/src-git/esmf
 ENV ESMF_COMM=mpich3
@@ -26,7 +27,7 @@ RUN make 2>&1 | tee esmf-make.out
 #RUN make all_tests 2>&1 | tee esmf-make-all_tests.out
 RUN make install 2>&1 | tee esmf-make.out
 
-# Build ESMPy ==================================================================
+# Build ESMPy =================================================================
 
 ENV ESMFMKFILE=${ESMF_INSTALL_LIBDIR}/esmf.mk
 WORKDIR ${ESMF_DIR}/src/addon/ESMPy
