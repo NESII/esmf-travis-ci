@@ -2,12 +2,12 @@ FROM bekozi/esmf-netcdf
 
 # Build ESMF ===================================================================
 
-WORKDIR ${HOME}/sandbox/esmf/git
-RUN git clone https://git.code.sf.net/p/esmf/esmf esmf
+WORKDIR ${HOME}/sandbox/esmf/src-git
+RUN git clone https://github.com/esmf-org/esmf.git
 WORKDIR esmf
 RUN git checkout master
 
-ENV ESMF_DIR=${HOME}/sandbox/esmf/git/esmf
+ENV ESMF_DIR=${HOME}/sandbox/esmf/src-git/esmf
 ENV ESMF_COMM=mpich3
 ENV ESMF_BOPT="g"
 ENV ESMF_NETCDF="split"
@@ -34,3 +34,5 @@ RUN python setup.py build --ESMFMKFILE=${ESMFMKFILE}
 RUN python setup.py test 2>&1 | tee esmpy-test.out
 RUN python setup.py install
 RUN python -c "import ESMF"
+
+WORKDIR ${ESMF_DIR}
