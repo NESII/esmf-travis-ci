@@ -5,6 +5,8 @@ RUN echo "ESMF_BRANCH=$ESMF_BRANCH"
 
 # Build ESMF ==================================================================
 
+ENV PATH=$PATH:$BB_MPICH_PREFIX/bin
+
 WORKDIR ${HOME}/sandbox/esmf/src-git
 RUN git clone --branch $ESMF_BRANCH --depth 1 https://github.com/esmf-org/esmf.git
 WORKDIR esmf
