@@ -5,24 +5,23 @@ ESMF_TRAVISCI_DIR=~/l/project/esmf-travis-ci
 
 ESMF_BRANCH="master"
 
-#SHOULD_PUSH="ON"
-SHOULD_PUSH="OFF"
+SHOULD_PUSH="ON"
+#SHOULD_PUSH="OFF"
 
-SHOULD_BUILD="ON"
-#SHOULD_BUILD="OFF"
+#SHOULD_BUILD="ON"
+SHOULD_BUILD="OFF"
 
 # If "ON", provide the --no-cache flag to "docker build"
-#NO_CACHE="OFF"
-NO_CACHE="ON"
+NO_CACHE="OFF"
+#NO_CACHE="ON"
 
 SUFFIXES=(
-#          "esmf-ubuntu"
-#          "esmf-mpich"
-#          "esmf-hdf5"
-#          "esmf-netcdf"
+          "esmf-ubuntu"
+          "esmf-hdf5"
+          "esmf-netcdf"
           "esmf"
-#          "nuopc-protos"
 #          "esmf-doc"
+          "nuopc-protos"
           )
 
 # =============================================================================
