@@ -1,27 +1,28 @@
 #!/usr/bin/env bash
 set -Eeuxo pipefail
 
-ESMF_TRAVISCI_DIR=~/l/project/esmf-travis-ci
+ESMF_TRAVISCI_DIR=~/project/esmf-travis-ci
 
-ESMF_BRANCH="master"
+#ESMF_BRANCH="master"
+ESMF_BRANCH="ESMF_8_0_1_beta_snapshot_13"
 
 SHOULD_PUSH="ON"
 #SHOULD_PUSH="OFF"
 
-#SHOULD_BUILD="ON"
-SHOULD_BUILD="OFF"
+SHOULD_BUILD="ON"
+#SHOULD_BUILD="OFF"
 
 # If "ON", provide the --no-cache flag to "docker build"
 NO_CACHE="OFF"
 #NO_CACHE="ON"
 
 SUFFIXES=(
-          "esmf-ubuntu"
-          "esmf-hdf5"
-          "esmf-netcdf"
+#          "esmf-ubuntu"
+#          "esmf-hdf5"
+#          "esmf-netcdf"
           "esmf"
 #          "esmf-doc"
-          "nuopc-protos"
+#          "nuopc-protos"
           )
 
 # =============================================================================
