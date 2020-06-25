@@ -4,24 +4,25 @@ set -Eeuxo pipefail
 ESMF_TRAVISCI_DIR=~/project/esmf-travis-ci
 
 #ESMF_BRANCH="master"
-ESMF_BRANCH="ESMF_8_0_1_beta_snapshot_13"
+ESMF_BRANCH="bekozi-info-v1"
+#ESMF_BRANCH="ESMF_8_0_1_beta_snapshot_13"
 
-SHOULD_PUSH="ON"
-#SHOULD_PUSH="OFF"
+#SHOULD_PUSH="ON"
+SHOULD_PUSH="OFF"
 
 SHOULD_BUILD="ON"
 #SHOULD_BUILD="OFF"
 
-# If "ON", provide the --no-cache flag to "docker build"
-NO_CACHE="OFF"
-#NO_CACHE="ON"
+NO_CACHE=""
+#NO_CACHE="--no-cache"
 
 SUFFIXES=(
 #          "esmf-ubuntu"
 #          "esmf-hdf5"
 #          "esmf-netcdf"
-          "esmf"
-#          "esmf-doc"
+#          "esmf"
+#          "esmf-doc-anvil"
+          "esmf-doc"
 #          "nuopc-protos"
           )
 
@@ -35,17 +36,14 @@ for s in "${SUFFIXES[@]}"; do
   if [ "${SHOULD_BUILD}" == "ON" ]; then
     if [ "${s}" == "esmf" ]; then
       DOCKER_BUILDARGS="--build-arg ESMF_BRANCH=${ESMF_BRANCH}"
+    elif [ "${s}" == "esmf-doc" ]; then
+      DOCKER_BUILDARGS="--build-arg ESMF_BRANCH=${ESMF_BRANCH}"
     else
       DOCKER_BUILDARGS=""
     fi
-    if [ "${NO_CACHE}" == "ON" ]; then
-      NO_CACHE_ARG="--no-cache"
-    else
-      NO_CACHE_ARG=""
-    fi
     echo "building: ${DOCKER_TAG}"
     pushd "${s}"
-    docker build ${DOCKER_BUILDARGS} ${NO_CACHE_ARG} -t "${DOCKER_TAG}" .
+    docker build ${DOCKER_BUILDARGS} ${NO_CACHE} -t "${DOCKER_TAG}" .
     popd
   fi
   if [ "${SHOULD_PUSH}" == "ON" ]; then
